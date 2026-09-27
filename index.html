@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Red Force Umpire Playbook</title>
+<style>
+:root{--bg:#0c1117;--panel:#182027;--panel2:#202a33;--text:#f5f7f9;--muted:#aeb7c0;--red:#c11a25;--red2:#eb3944;--line:#303b45;--gold:#e1b034;--blue:#4b84c4;--green:#4fa86f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}button{font:inherit}
+.app{min-height:100vh;display:flex;flex-direction:column}.top{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:0 22px;background:#0a0f14;position:sticky;top:0;z-index:20}.brand{font-weight:800;letter-spacing:.06em}.brand small{display:block;color:var(--red2);font-size:10px;letter-spacing:.14em}.menu{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}.menu button{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:9px 12px;border-radius:8px;cursor:pointer}.menu button.active,.menu button:hover{background:var(--red);color:white;border-color:var(--red)}main{width:min(1180px,100%);margin:auto;padding:28px 22px 44px}.kicker{font-size:11px;color:var(--red2);font-weight:800;letter-spacing:.12em;text-transform:uppercase}.title{font-size:34px;line-height:1.1;margin:7px 0 8px;font-weight:800}.sub{color:var(--muted);max-width:850px}.line{height:1px;background:var(--line);margin:20px 0 24px}.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid2x2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}.card h3{margin:0 0 10px;font-size:15px}.card p{color:var(--muted);line-height:1.55}.hero{background:linear-gradient(135deg,#141d25,#0f151b);border:1px solid var(--line);border-radius:18px;padding:34px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}.hero h1{font-size:46px;line-height:1;margin:10px 0 16px}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:8px 12px;margin:4px 5px 0 0;color:var(--muted);font-size:11px}.pill.red{background:var(--red);border-color:var(--red);color:#fff}.stage{height:360px;border-radius:14px;background:#080d12;border:1px solid var(--line);overflow:hidden;position:relative}.stage canvas{display:block;width:100%;height:100%}.model-tools{position:absolute;left:12px;bottom:12px;display:flex;gap:7px}.model-tools button{border:1px solid #4b5863;background:#111820;color:#fff;border-radius:8px;padding:8px 10px;cursor:pointer}.model-note{position:absolute;right:12px;top:12px;background:rgba(8,13,18,.78);padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:11px;color:var(--muted)}ul{margin:10px 0 0;padding-left:20px}li{margin:8px 0;color:var(--muted);line-height:1.4}.check{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line)}.check:last-child{border-bottom:0}.dot{width:9px;height:9px;border-radius:50%;background:var(--red2);margin-top:6px;flex:none}.visual{width:100%;height:210px;object-fit:cover;border-radius:10px;background:#111820;border:1px solid var(--line)}.source{font-size:10px;color:#77828d;margin-top:12px}.navrow{display:flex;justify-content:space-between;margin-top:22px}.navrow button{background:var(--panel);border:1px solid var(--line);color:white;padding:10px 14px;border-radius:9px;cursor:pointer}.warning{background:#2a2110;border:1px solid #5e4a1c;color:#e8d18a;border-radius:10px;padding:12px;font-size:12px;margin-top:12px}
+@media(max-width:850px){.grid2,.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.menu{display:none}.title{font-size:28px}.hero h1{font-size:38px}}
+@media(max-width:560px){.grid4,.grid2x2{grid-template-columns:1fr}.stage{height:300px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="brand"><small>OPFOR / RED FORCE</small>UMPIRE PLAYBOOK</div>
+  <nav class="menu" id="menu"></nav>
+</header>
+<main id="content"></main>
+</div>
+<script type="module">
+const pages=[
+["01","Aim"],["02","Scope"],["03","Preparation"],["04","Kit & Markings"],["05","Personnel & TES"],["06","Deployment"],["07","Obstacles"],["08","Obstacle Safety"],["09","Mounted Fight"],["10","3D Vehicle"],["11","ULT Reference"],["12","Dismount Fight"],["13","Conduct / POW"],["14","Future App"]
+];
+let page=1, viewer=null, animationId=null;
+
+const content=document.getElementById("content"), menu=document.getElementById("menu");
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+function nav(){
+  menu.innerHTML="";
+  pages.forEach((p,i)=>{const b=document.createElement("button");b.textContent=p[0];b.title=p[1];b.className=(i+1===page?"active":"");b.onclick=()=>show(i+1);menu.appendChild(b)});
+}
+function shell(k,t,s){return `<div class="kicker">${k}</div><div class="title">${t}</div><div class="sub">${s}</div><div class="line"></div>`}
+function bullets(arr){return `<ul>${arr.map(x=>`<li>${x}</li>`).join("")}</ul>`}
+function checks(arr){return arr.map(x=>`<div class="check"><span class="dot"></span><div>${x}</div></div>`).join("")}
+function navrow(){return `<div class="navrow"><button id="prev">← Previous</button><button id="next">Next →</button></div>`}
+
+function render(n){
+ if(animationId){cancelAnimationFrame(animationId);animationId=null}
+ viewer?.dispose();viewer=null;
+ let h="";
+ switch(n){
+ case 1:h=shell("01 / FOUNDATION","Aim","A clear and standardised guide for Red Force Umpires to carry out their roles and responsibilities throughout the exercise.")+
+ `<div class="grid2"><section class="card"><h3>AIM</h3><p>To provide Red Force Umpires with a clear and standardised guide to effectively carry out their roles and responsibilities throughout the exercise.</p><h3 style="margin-top:24px">The guide supports the Umpire to:</h3>${checks(["Observe and assess Red Force activities.","Record and report relevant observations and outcomes.","Remain aligned with the exercise scenario, training objectives and safety requirements."])}</section><section class="card"><h3>FIELD LOOP</h3>${checks(["OBSERVE — What is happening?","ASSESS — What does it mean?","RECORD — What must be captured?","REPORT — Who needs to know?"])}</section></div>`;break;
+ case 2:h=shell("02 / NAVIGATION","Scope","Four phases — one continuous umpiring flow.")+
+ `<div class="grid2x2">${[
+ ["01","PREPARATION","Prepare the people, equipment and information needed before the force moves."],
+ ["02","DEPLOYMENT","Confirm essential checks as the force moves into its deployment area."],
+ ["03","MOUNTED FIGHT","Use visual standards and umpire checks during mounted operations."],
+ ["04","DISMOUNT FIGHT","Use visual standards, TES and safety references during dismounted operations."]
+ ].map((x,i)=>`<section class="card"><div class="pill ${i===0?"red":""}">${x[0]}</div><h3 style="margin-top:12px">${x[1]}</h3><p>${x[2]}</p></section>`).join("")}</div>`;break;
+ case 3:h=shell("03 / PREPARATION","Before the Exercise","Get the task, ground and umpire resources clear before deployment.")+
+ `<div class="grid2"><section class="card"><h3>CONFIRM THE EXERCISE</h3>${checks(["Number of Echoes (Umpires) working with the exercise.","Area of Operations (AO).","Scheme of manoeuvre.","Danger areas and obstacles.","Deployment area (LFA / NLFA).","Casualty Collection Points (CCPs)."])}</section><section class="card"><h3>PREPARE THE RESOURCES</h3>${checks(["Red armbands for Red Force / Umpire identification.","Colour flags and white flag for applicable exercise use.","Cylume sticks for night identification, danger areas, obstacles and safety.","Vehicular tactical signs.","Wire cutter + wire glove and white tape.","Serviceable TES sets + spare batteries.","UCG gun for Umpire use."])}</section></div>`;break;
+ case 4:h=shell("04 / VISUAL REFERENCE","Kit & Markings","Use visual references rather than relying on memory.")+
+ `<div class="grid2x2"><section class="card"><h3>Vehicle identification</h3><p>Use the OPFOR visual reference for tactical-sign configurations and red-light-stick placement.</p></section><section class="card"><h3>Vehicle status</h3><p>White / yellow / red indicators are used for the simulation conditions described in the source brief.</p></section><section class="card"><h3>Night identification</h3><p>Cylume sticks provide the applicable visual identification for night operations, danger areas and obstacles.</p></section><section class="card"><h3>Umpire equipment</h3><p>Keep the required identification, safety and TES-related equipment serviceable before deployment.</p></section></div><div class="source">Source basis: OPFOR Simulation Brief visual references and your Umpire Play Book.</div>`;break;
+ case 5:h=shell("05 / PREPARATION","Personnel & TES Visual Check","The visual standard helps the Umpire identify what should be present.")+
+ `<div class="grid2"><section class="card"><h3>Visual recognition</h3><p>Use the OPFOR soldier/TES visuals as a recognition aid when checking Red Force presentation and TES-related equipment.</p><div class="warning">Check → Confirm → Rectify before moving.</div></section><section class="card"><h3>UMPIRE CHECK</h3>${checks(["Red Force / Umpire identification is available.","TES sets are mounted on weapons and personnel as required.","Spare TES batteries are available.","Required water and blank / practice ammunition are present before deployment."])}</section></div>`;break;
+ case 6:h=shell("06 / DEPLOYMENT","Deployment Checkpoint","Confirm the force can occupy the deployment area safely and remain identifiable.")+
+ `<div class="grid2"><section class="card"><h3>BEFORE OCCUPATION</h3>${checks(["Confirm the deployment area is safe for troops to occupy.","Confirm danger areas and obstacles are understood.","Confirm TES sets mounted on weapons and personnel.","Confirm full water bottles.","Confirm required blank / practice ammunition.","Confirm Red cylume identification for night operations."])}</section><section class="card"><h3>UMPIRE RESPONSIBILITY</h3><p>During deployment, the Umpire stays focused on the conditions required for the Red Force to occupy and move safely, while maintaining the applicable identification and observation role.</p></section></div>`;break;
+ case 7:h=shell("07 / VISUAL REFERENCE","Obstacle Recognition","Use the visual standard to identify what is being simulated.")+
+ `<div class="grid4">${["Crater","Prep for demo","Mine cluster","5 CON"].map((x,i)=>`<section class="card"><h3>${x}</h3><p>Refer to the corresponding visual in the OPFOR Simulation Brief for the recognised marking/layout.</p></section>`).join("")}</div>`;break;
+ case 8:h=shell("08 / VISUAL REFERENCE","Obstacle Safety & Boundaries","The Umpire must understand what the visual markings mean.")+
+ `<div class="grid2"><section class="card"><h3>KEY VISUALS</h3>${checks(["White tape can indicate the obstacle / closed axis.","Green lit cylume sticks are used for night visibility in the source example.","Sand bag on an iron picket is part of the crater visual standard."])}</section><section class="card"><h3>SAFETY POINT</h3><p>Keep the axis open and free for casualty evacuation where the source brief requires it.</p><p>The source brief also describes white tape across the axis / track to simulate closure.</p></section></div>`;break;
+ case 9:h=shell("09 / MOUNTED FIGHT","Vehicle Visual Standards","When the fight becomes mounted, the Umpire needs to recognise the simulation markers quickly.")+
+ `<div class="grid2"><section class="card"><h3>TACTICAL SIGN RECOGNITION</h3><p>T-80 / TH-400, BMP-2 / BTR-90 and VIPER configurations are shown in the source visual references.</p></section><section class="card"><h3>UMPIRE QUICK CHECK</h3>${checks(["Identify the simulated platform.","Recognise the tactical-sign marking.","Check applicable vehicle-status indicators.","Observe the engagement and record relevant outcomes.","Maintain the applicable safety rules."])}</section></div>`;break;
+ case 10:h=shell("10 / MOUNTED FIGHT","3D Vehicle Reference","Your uploaded GLB is displayed as a slow-spinning field reference. Drag to inspect; use the controls to pause or reset.")+
+ `<section class="card"><div class="stage" id="stage"><div class="model-note">AUTO ROTATE: ON</div><div class="model-tools"><button id="pause">Pause</button><button id="reset">Reset view</button></div></div><div class="warning">This is a visual/reference model. Use the approved exercise source material for exact simulation markings and procedures.</div></section>`+
+ `<div class="grid4" style="margin-top:16px"><section class="card"><h3>Observe</h3><p>Recognise the vehicle and its visual indicators.</p></section><section class="card"><h3>Assess</h3><p>Apply the relevant exercise simulation standard.</p></section><section class="card"><h3>Record</h3><p>Capture the key event, timing and outcome.</p></section><section class="card"><h3>Report</h3><p>Pass relevant information through the established chain.</p></section></div>`;break;
+ case 11:h=shell("11 / MOUNTED FIGHT","ULT / Weapon Simulation Reference","Use the source brief to understand what the Umpire may see during simulation.")+
+ `<div class="grid2"><section class="card"><h3>Source reference</h3><p>ULTs are used to simulate specified non-organic weapon systems because of TES limitations.</p></section><section class="card"><h3>What the Umpire should know</h3>${checks(["ULT can be configured to a respective platform using the UCG.","Once configured, it is limited to the weapon system available on that platform.","ULT has a weapon-system-dependent cool-down time.","Apply the exercise's established sound-signature and engagement procedure."])}</section></div>`;break;
+ case 12:h=shell("12 / DISMOUNT FIGHT","Close Combat — Quick Reference","The source brief defines specific safety and conduct rules for close encounters.")+
+ `<div class="grid2"><section class="card"><h3>Source-defined safety distances</h3><p style="font-size:20px;color:white;font-weight:800">Infantry encounters: 5 m rule</p><p style="font-size:20px;color:white;font-weight:800">Vehicle / heavy weapon encounters: 30 m rule</p></section><section class="card"><h3>Umpire reference</h3>${checks(["TES is the primary means for encounters.","Apply the stated safety distance.","Do not allow physical contact.","Do not allow unsafe handling or unauthorised use of OPFOR equipment.","Use the applicable umpire process to register the engagement."])}</section></div>`;break;
+ case 13:h=shell("13 / DISMOUNT FIGHT","Conduct, Smoke & POW Reference","Keep the Umpire response consistent with the source rules.")+
+ `<div class="grid2"><section class="card"><h3>Source-defined conduct</h3>${checks(["Smoke grenade restrictions are specified.","No vulgar language or ill-treatment.","No throwing foreign objects.","POW equipment is secured for accounting purposes."])}</section><section class="card"><h3>Umpire role when an incident occurs</h3>${checks(["Recognise the situation.","Apply the relevant exercise rule.","Prevent unsafe / unauthorised action.","Record the event and relevant details.","Report through the established chain."])}</section></div>`;break;
+ case 14:h=shell("14 / FUTURE APP","From Playbook → Quick Guide","The same structure is designed to become a field quick-reference application.")+
+ `<div class="grid4">${[["VISUAL","See it"],["STANDARD","Know it"],["ACTION","Do it"],["RECORD","Capture it"]].map(x=>`<section class="card"><h3>${x[0]}</h3><p>${x[1]}</p></section>`).join("")}</div><div class="card" style="margin-top:18px"><h3>Design principle</h3><p>One task → one screen → one quick decision. The umpire should spend time observing the exercise, not searching through a long document.</p></div>`;break;
+ }
+ h+=navrow(); content.innerHTML=h;
+ document.getElementById("prev").onclick=()=>show(Math.max(1,page-1));
+ document.getElementById("next").onclick=()=>show(Math.min(pages.length,page+1));
+ if(n===10) initViewer();
+}
+function show(n){page=Math.max(1,Math.min(pages.length,n));nav();render(page);window.scrollTo({top:0,behavior:"smooth"})}
+
+async function initViewer(){
+ const stage=document.getElementById("stage");
+ let THREE, GLTFLoader, OrbitControls;
+ try {
+   THREE = await import("https://cdn.jsdelivr.net/npm/three@0.180.0/+esm");
+   ({GLTFLoader} = await import("https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/loaders/GLTFLoader.js/+esm"));
+   ({OrbitControls} = await import("https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js/+esm"));
+ } catch (err) {
+   stage.innerHTML = '<div style="height:100%;display:grid;place-items:center;padding:28px;text-align:center;color:#aeb7c0"><div><strong style="color:#fff">3D viewer could not load.</strong><br><br>Check your internet connection and refresh. The rest of the playbook remains available.</div></div>';
+   return;
+ }
+ const scene=new THREE.Scene(); scene.background=new THREE.Color(0x080d12);
+ const camera=new THREE.PerspectiveCamera(42,stage.clientWidth/stage.clientHeight,.1,1000);
+ camera.position.set(4.8,2.7,5.8);
+ const renderer=new THREE.WebGLRenderer({antialias:true});
+ renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.setSize(stage.clientWidth,stage.clientHeight); renderer.outputColorSpace=THREE.SRGBColorSpace;
+ stage.prepend(renderer.domElement);
+ const hemi=new THREE.HemisphereLight(0xffffff,0x22303c,2.0);scene.add(hemi);
+ const key=new THREE.DirectionalLight(0xffffff,3.0);key.position.set(5,8,6);scene.add(key);
+ const fill=new THREE.DirectionalLight(0x9db6d4,1.4);fill.position.set(-5,3,-4);scene.add(fill);
+ const grid=new THREE.GridHelper(18,18,0x25313b,0x17212a);scene.add(grid);
+ const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.minDistance=3;controls.maxDistance=13;controls.target.set(0,1,0);
+ let model=null;
+ try{
+   const gltf=await new GLTFLoader().loadAsync("BX_opfor_BMP.glb");
+   model=gltf.scene;
+   model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});
+   const box=new THREE.Box3().setFromObject(model), size=box.getSize(new THREE.Vector3()), center=box.getCenter(new THREE.Vector3());
+   const max=Math.max(size.x,size.y,size.z); const scale=4.6/max; model.scale.setScalar(scale);
+   model.position.set(-center.x*scale,-center.y*scale,-center.z*scale);
+   scene.add(model);
+ }catch(e){
+   const geo=new THREE.BoxGeometry(4,1.4,2.2),mat=new THREE.MeshStandardMaterial({color:0x5e6b59});
+   model=new THREE.Mesh(geo,mat);scene.add(model);
+   stage.insertAdjacentHTML("beforeend",'<div class="warning" style="position:absolute;left:12px;right:12px;top:12px">Model could not be loaded. Keep the GLB in the app’s <b>assets</b> folder.</div>');
+ }
+ let rotating=true;
+ document.getElementById("pause").onclick=()=>{rotating=!rotating;document.getElementById("pause").textContent=rotating?"Pause":"Play"};
+ document.getElementById("reset").onclick=()=>{camera.position.set(4.8,2.7,5.8);controls.target.set(0,1,0);controls.update();if(model){model.rotation.set(0,0,0)}};
+ const onResize=()=>{const w=stage.clientWidth,h=stage.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h)};
+ const ro=new ResizeObserver(onResize);ro.observe(stage);
+ const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;if(reduced){rotating=false;document.getElementById("pause").textContent="Play"}
+ const clock=new THREE.Clock();
+ function loop(){animationId=requestAnimationFrame(loop);if(rotating&&model)model.rotation.y+=.0025;controls.update();renderer.render(scene,camera)}
+ loop();
+ viewer={dispose(){cancelAnimationFrame(animationId);ro.disconnect();renderer.dispose();controls.dispose();}};
+}
+nav();render(page);
+</script>
+</body>
+</html>
