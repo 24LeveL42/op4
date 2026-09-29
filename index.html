@@ -80,7 +80,9 @@ html,body{overflow-x:hidden}
  .menu button .lbl{font-size:11px}
  main{padding:18px}.grid2{grid-template-columns:1fr 1fr}.grid2x2{grid-template-columns:1fr 1fr}.status-grid{grid-template-columns:1fr 1fr}.status-stage{height:250px}
 }
- .index-label{display:none!important}</style>
+ .index-label{display:none!important}.life-card{margin:0 0 22px;padding:20px 22px;border:1px solid #3a444d;border-radius:18px;background:linear-gradient(135deg,#1a2229,#11171c);box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.life-card h3{margin:8px 0 8px;font-size:1.35rem}.life-card .desc{margin-bottom:14px;color:#b9c2ca}.life-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.life-grid>div{padding:13px 14px;border-radius:12px;background:#11171c;border:1px solid #303a43}.life-grid b{display:block}.life-grid span{display:block;margin-top:5px;color:#ff454f;font-weight:800}@media(max-width:700px){.life-grid{grid-template-columns:1fr}}
+</style>
 
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="theme-color" content="#c11a25">
@@ -154,7 +156,7 @@ function render(n){
  case 10:h=shell("10 / MOUNTED FIGHT","Vehicle Status Reference","Use the four 3D references below to recognise vehicle status. Each model can be rotated and zoomed independently.")+
  `<div class="status-intro"><strong>Quick recognition:</strong><p>Use the flags on the vehicle as the visual cue shown in each model. Scroll or pinch to zoom, and drag to inspect each vehicle from different angles.</p></div>`+
  `<div class="status-grid">`+
- `<section class="status-card"><span class="status-badge">ADMIN MOVE</span><h3>Admin Move</h3><div class="desc">Vehicle with <b>1 × yellow flag</b>.</div><div class="status-stage" id="statusStage0"><div class="zoom-note">Drag to rotate · Scroll to zoom</div></div><div class="status-tools"><span class="source">3D vehicle reference</span><button id="statusPause0">Pause</button></div></section>`+
+ `<section class="life-card"><span class="status-badge">RED FLAG / VEHICLE LIFE</span><h3>Red Flag Life System</h3><div class="desc">Red Flag will be used to simulate the additional life the vehicle has.</div><div class="life-grid"><div><b>0 red flags mounted</b><span>1 life</span></div><div><b>1 red flag mounted</b><span>2 lives</span></div><div><b>2 red flags mounted</b><span>3 lives</span></div></div></section>`+`<section class="status-card"><span class="status-badge">ADMIN MOVE</span><h3>Admin Move</h3><div class="desc">Vehicle with <b>1 × yellow flag</b>.</div><div class="status-stage" id="statusStage0"><div class="zoom-note">Drag to rotate · Scroll to zoom</div></div><div class="status-tools"><span class="source">3D vehicle reference</span><button id="statusPause0">Pause</button></div></section>`+
  `<section class="status-card"><span class="status-badge">DESTROYED VEH</span><h3>Destroyed Vehicle</h3><div class="desc">Vehicle with <b>1 × red flag + 1 × yellow flag</b>.</div><div class="status-stage" id="statusStage1"><div class="zoom-note">Drag to rotate · Scroll to zoom</div></div><div class="status-tools"><span class="source">3D vehicle reference</span><button id="statusPause1">Pause</button></div></section>`+
  `<section class="status-card"><span class="status-badge">2 × LIVE</span><h3>Vehicle with 2 × Live</h3><div class="desc">Vehicle with <b>2 × red flags</b>.</div><div class="status-stage" id="statusStage2"><div class="zoom-note">Drag to rotate · Scroll to zoom</div></div><div class="status-tools"><span class="source">3D vehicle reference</span><button id="statusPause2">Pause</button></div></section>`+
  `<section class="status-card"><span class="status-badge">1 × LIVE</span><h3>Vehicle with 1 × Live</h3><div class="desc">Vehicle with <b>1 × red flag</b>.</div><div class="status-stage" id="statusStage3"><div class="zoom-note">Drag to rotate · Scroll to zoom</div></div><div class="status-tools"><span class="source">3D vehicle reference</span><button id="statusPause3">Pause</button></div></section>`+
