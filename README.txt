@@ -1,22 +1,32 @@
-OPFOR / RED FORCE UMPIRE PLAYBOOK — CLEAN V1
+OPFOR / RED FORCE UMPIRE PLAYBOOK — PAGE 10 + OBSTACLE UPDATE
 
-This is a fresh GitHub Pages package designed to avoid the previous embedded-HTML/cache problems.
+Upload these files to the ROOT of the existing GitHub repository.
 
-UPLOAD:
-1. Unzip this package.
-2. Open the folder Red_Force_Umpire_Playbook_CLEAN_V1.
-3. Upload EVERYTHING inside that folder to the ROOT of the GitHub repository.
-4. Do not rename the files.
-5. Do not upload the ZIP itself.
-6. Existing repository contents should be backed up before deleting the old site.
+Replace:
+- index.html
+- destroyed_veh_op4.glb
+- obstacle_closed_night.glb
 
-IMPORTANT:
-- index.html is a small external-reference HTML file. The GLB models are separate files.
-- The page uses Google's model-viewer library from its CDN for the 3D viewers.
-- No service worker is registered by index.html, intentionally, to prevent stale GitHub Pages caches during development.
-- The obstacle viewers have manual drag rotation and zoom; no auto-rotation.
-- Closed Night obstacle file supplied in this rebuild is only 132 bytes and contains no usable geometry. Replace ONLY obstacle_closed_night.glb later when the real model is available; the page already points to that exact filename.
-- The supplied LUV E01 trainer model is included from the earlier uploaded file.
+Add:
+- admin_move_veh_op4.glb
+- 2_x_Live_op4.glb
+- 1_x_Live_op4.glb
+- obstacle signage.png
 
-Suggested test URL:
-https://24level42.github.io/op4/?cleanv1=1
+Page 10 is now:
+Vehicle Status & 3D Reference
+
+Models:
+1. Admin Move — 1 x yellow flag
+2. Destroyed Vehicle — 1 x red + 1 x yellow flag
+3. Vehicle with 2 x Live — 2 x red flags
+4. Vehicle with 1 x Live — 1 x red flag
+
+Red-flag life system:
+0 red flags = 1 life
+1 red flag = 2 lives
+2 red flags = 3 lives
+
+Page 07 also displays the obstacle signage image and uses the newly supplied Closed Night GLB.
+
+Do not rename the files.
