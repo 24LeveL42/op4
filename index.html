@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#b52b2b">
+<title>OPFOR / Red Force Umpire Playbook</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/icon-192.png">
+<style>
+:root{--bg:#090c10;--panel:#151a20;--panel2:#1b2229;--line:#2a3440;--text:#f3f5f7;--muted:#aeb8c4;--red:#e63a3a;--red2:#9f2020;--gold:#e7b75b;--blue:#5b8fd8;--shadow:0 12px 32px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}body{min-height:100vh}
+button{font:inherit;color:inherit}.topbar{position:sticky;top:0;z-index:50;background:rgba(9,12,16,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1380px;margin:auto;padding:14px 18px;display:flex;align-items:center;gap:18px}.brand{font-weight:900;letter-spacing:.04em;line-height:1.05}.brand small{display:block;color:var(--red);font-size:10px}.brand span{font-size:18px}.nav-index{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end;margin-left:auto}.nav-index button{border:1px solid #29333e;background:#171d24;border-radius:10px;padding:9px 11px;font-size:12px;font-weight:800;cursor:pointer}.nav-index button.active{background:linear-gradient(135deg,#a91f24,#d43b3b);border-color:#e14a4a}.nav-index b{color:#ff5b5b;margin-right:5px}
+main{max-width:1380px;margin:auto;padding:24px 18px 60px}.page{display:none}.page.active{display:block}
+.cover{min-height:calc(100vh - 120px);display:grid;grid-template-columns:minmax(320px,1fr) minmax(300px,.75fr);gap:26px;align-items:center}.cover-art{width:100%;max-height:78vh;object-fit:contain;border-radius:28px;box-shadow:0 25px 70px rgba(0,0,0,.5);background:#111}.cover-copy{padding:18px}.eyebrow{color:var(--red);font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.cover h1{font-size:clamp(38px,6vw,76px);line-height:.93;margin:10px 0 18px}.cover p{font-size:18px;color:var(--muted);line-height:1.65}.primary{background:linear-gradient(135deg,#a51f25,#e04a43);border:0;border-radius:13px;padding:14px 20px;font-weight:900;cursor:pointer;box-shadow:var(--shadow)}
+.page-head{border-bottom:1px solid var(--line);padding:10px 0 20px;margin-bottom:20px}.page-head h2{font-size:clamp(28px,4vw,46px);margin:6px 0 8px}.page-head p{max-width:1000px;color:var(--muted);font-size:17px;line-height:1.65;margin:0}
+.index-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.index-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;display:flex;gap:14px;align-items:center;cursor:pointer;min-height:88px}.index-card:hover{border-color:#c03b3b;transform:translateY(-1px)}.index-num{font-weight:1000;color:#ff4e4e;font-size:14px}.index-title{font-weight:900}.index-sub{font-size:12px;color:var(--muted);margin-top:4px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}.card h3{margin:0 0 10px}.card p,.card li{color:#c3ccd6;line-height:1.65}.card ul{padding-left:20px}.pill{display:inline-block;border-radius:999px;padding:5px 9px;background:#222b34;color:#fff;font-size:10px;font-weight:900;letter-spacing:.06em}.pill.red{background:#6f2024}.callout{background:#211d13;border:1px solid #55431f;border-radius:14px;padding:15px;color:#e8d39a;margin-top:14px}.warning{border-left:4px solid var(--red);background:#211416;padding:14px;border-radius:10px;color:#e9c8c8;margin-top:14px}.two-col-list{columns:2;column-gap:30px}.two-col-list li{break-inside:avoid}
+.model-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px;overflow:hidden}.model-card.featured{border-color:#5d8fd7}.model-card h3{margin:10px 4px 6px}.model-card p{margin:0 4px 12px;color:var(--muted);font-size:14px;line-height:1.5}.model-wrap{height:390px;background:#080c10;border:1px solid #29333e;border-radius:14px;overflow:hidden;position:relative}.model-wrap model-viewer{width:100%;height:100%;background:radial-gradient(circle at 50% 35%,#18212a,#080c10 70%);--poster-color:transparent}.model-note{position:absolute;right:10px;top:10px;z-index:2;background:rgba(9,12,16,.82);border:1px solid #394652;padding:7px 9px;border-radius:8px;font-size:11px;color:#cbd5df;pointer-events:none}.model-actions{display:flex;gap:8px;margin-top:9px}.model-actions button{background:#171e25;border:1px solid #3a4652;border-radius:9px;padding:8px 11px;cursor:pointer}.model-actions button:hover{border-color:#d44}.status-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}.status-rule{background:#11161b;border:1px solid #2a343f;border-radius:14px;padding:15px}.status-rule strong{display:block;font-size:18px}.status-rule span{display:block;color:#ff5656;font-weight:900;margin-top:8px}.media{width:100%;border-radius:14px;border:1px solid var(--line);background:#0a0d10}
+.footer-nav{display:flex;justify-content:space-between;gap:10px;margin-top:28px}.footer-nav button{background:#171e25;border:1px solid #34404c;border-radius:10px;padding:11px 16px;cursor:pointer}.hidden{display:none!important}
+@media(max-width:950px){.cover{grid-template-columns:1fr}.cover-art{max-height:62vh}.index-grid{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr 1fr}.nav-index{display:none}}
+@media(max-width:650px){main{padding:14px 10px 40px}.grid2,.grid3,.status-rules,.index-grid{grid-template-columns:1fr}.model-wrap{height:310px}.cover{min-height:auto;padding-top:12px}.cover h1{font-size:42px}.nav{padding:11px 12px}.brand span{font-size:16px}.two-col-list{columns:1}}
+</style>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="nav">
+    <div class="brand"><small>OPFOR / RED FORCE</small><span>UMPIRE PLAYBOOK</span></div>
+    <div class="nav-index" id="navIndex"></div>
+  </div>
+</header>
+
+<main>
+<section class="page active" id="p0">
+  <div class="cover">
+    <img class="cover-art" src="./cover.png" alt="OPFOR / Red Force Umpire Playbook cover">
+    <div class="cover-copy">
+      <div class="eyebrow">Field reference • Quick access • 3D visual aids</div>
+      <h1>OPFOR / RED FORCE<br>UMPIRE PLAYBOOK</h1>
+      <p>A practical quick-reference for Red Force Umpires to prepare, deploy, observe, assess and report during training activities.</p>
+      <button class="primary" onclick="go(1)">OPEN PLAYBOOK →</button>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="p1">
+<div class="page-head"><div class="eyebrow">01 / AIM</div><h2>Aim</h2><p>Provide a clear, standardised reference for Red Force Umpires to observe, assess, record and report in line with the exercise scenario, training objectives and safety requirements.</p></div>
+<div class="grid2"><div class="card"><h3>Red Force Umpire Role</h3><p>Understand the approved plan, observe what happens on the ground, apply the relevant umpiring standard and communicate clear observations to the conducting team.</p></div><div class="card"><h3>Core Principle</h3><p>Red Force operates according to the approved plan and reacts to Blue Force actions. The umpire's job is to assess what actually occurs against the applicable exercise standard.</p></div></div>
+<div class="callout"><b>Umpire cue:</b> Know the scenario first. Then assess the action, equipment, safety and outcome.</div>
+</section>
+
+<section class="page" id="p2">
+<div class="page-head"><div class="eyebrow">02 / SCOPE</div><h2>Scope</h2><p>Use this playbook across the preparation, deployment, mounted and dismounted phases of Red Force simulation.</p></div>
+<div class="grid2">
+<div class="card"><span class="pill red">01</span><h3>Preparation</h3><p>People, equipment, information and coordination before the activity.</p></div>
+<div class="card"><span class="pill">02</span><h3>Deployment</h3><p>Checks while the force moves into its deployment area.</p></div>
+<div class="card"><span class="pill">03</span><h3>Mounted Fight</h3><p>Vehicle status, tactical signs, TES and visual umpiring cues.</p></div>
+<div class="card"><span class="pill">04</span><h3>Dismount Fight</h3><p>Personnel, TES, obstacles, close combat, conduct and safety references.</p></div>
+</div>
+</section>
+
+<section class="page" id="p3">
+<div class="page-head"><div class="eyebrow">03 / PREPARATION</div><h2>Preparation</h2><p>Get the task, ground and umpire resources clear before deployment.</p></div>
+<div class="grid2">
+<div class="card"><h3>Before CMT / ATEC</h3><ul><li>Liaise with the POC / supporting body at least one day before conducting.</li><li>Confirm the exercise brief, scenario and umpiring requirements.</li><li>Know the AO, scheme of manoeuvre, danger areas and deployment areas.</li><li>Confirm LFA / NLFA, obstacles and CCPs.</li></ul></div>
+<div class="card"><h3>Information to Obtain</h3><ul><li>Number of Echoes / participating elements.</li><li>Area of operations.</li><li>Scheme of manoeuvre.</li><li>Danger areas.</li><li>Deployment area and boundaries.</li><li>Obstacle locations and CCPs.</li></ul></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Umpire Kit</h3><ul class="two-col-list"><li>Red Force armband</li><li>Colour flags</li><li>Cylume sticks</li><li>Vehicular tactical signs</li><li>Wire cutter / glove</li><li>White tape</li><li>Serviceable TES</li><li>Spare batteries</li><li>UCG</li></ul></div>
+</section>
+
+<section class="page" id="p4">
+<div class="page-head"><div class="eyebrow">04 / KIT & MARKINGS</div><h2>Kit & Markings</h2><p>Use clear visual identifiers so the umpire can recognise Red Force personnel, vehicles and status quickly.</p></div>
+<div class="grid2">
+<div class="card"><h3>Personnel</h3><p>Red Force personnel are identified with the appropriate red armband / visual marking. Confirm TES is correctly fitted and serviceable before the activity.</p></div>
+<div class="card"><h3>Vehicle / Tactical Signs</h3><p>Tactical signs must be fixed securely and remain visible. Day and night configurations should be checked before movement.</p></div>
+</div>
+<div class="grid2" style="margin-top:16px">
+<div class="card"><h3>Day Tactical Sign</h3><img class="media" src="./day_tact_sign.png" alt="Day tactical sign"></div>
+<div class="card"><h3>Night Tactical Sign</h3><img class="media" src="./night_tact_sign.png" alt="Night tactical sign"></div>
+</div>
+</section>
+
+<section class="page" id="p5">
+<div class="page-head"><div class="eyebrow">05 / RED FORCE IDENTIFICATION</div><h2>OPFOR Soldier & TES Reference</h2><p>Use the soldier model as a visual recognition aid. OPFOR personnel are identified by the red band worn on the arm.</p></div>
+<div class="model-card featured"><div class="pill red">OPFOR / RED FORCE</div><h3>OPFOR Trooper</h3><p>Rotate manually and zoom to inspect the visual reference. The red arm band is the quick recognition cue.</p><div class="model-wrap"><span class="model-note">DRAG TO ROTATE · SCROLL / PINCH TO ZOOM</span><model-viewer id="soldierModel" src="./opfor_trooper.glb" camera-controls interaction-prompt="none" shadow-intensity="1" exposure="1.1" camera-orbit="0deg 75deg auto" alt="OPFOR trooper 3D model"></model-viewer></div><div class="model-actions"><button onclick="resetMV('soldierModel')">Reset view</button></div></div>
+<div class="warning"><b>Identification cue:</b> Recognise the platform / person first, then confirm the applicable Red Force marking.</div>
+</section>
+
+<section class="page" id="p6">
+<div class="page-head"><div class="eyebrow">06 / DEPLOYMENT</div><h2>Deployment</h2><p>Confirm essential checks before and during movement into the deployment area.</p></div>
+<div class="grid2">
+<div class="card"><h3>Before Movement</h3><ul><li>Dismounted troops are equipped.</li><li>TES is fitted and serviceable.</li><li>Weapons / equipment are prepared as directed.</li><li>Full water bottles and required blank / practice ammunition are carried.</li><li>Deployment area is safe and understood.</li></ul></div>
+<div class="card"><h3>Night Operations</h3><ul><li>Use the approved red cylume / night identification arrangement.</li><li>Check vehicle tactical signs are fixed and visible.</li><li>Confirm umpire visual markers before entering the area.</li></ul></div>
+</div>
+</section>
+
+<section class="page" id="p7">
+<div class="page-head"><div class="eyebrow">07 / OBSTACLES</div><h2>Obstacle 3D Reference</h2><p>Four dedicated references. Drag to rotate and scroll / pinch to zoom. These obstacle viewers do <b>not</b> auto-rotate.</p></div>
+<div class="grid2">
+<div class="model-card"><div class="pill">OPEN / DAY</div><h3>Obstacle — Open Day</h3><p>Day configuration, open position.</p><div class="model-wrap"><span class="model-note">MANUAL ROTATION · ZOOM</span><model-viewer src="./obstacle_open_day.glb" camera-controls interaction-prompt="none" shadow-intensity="1" alt="Open day obstacle"></model-viewer></div><div class="model-actions"><button onclick="resetNearest(this)">Reset view</button></div></div>
+<div class="model-card"><div class="pill">CLOSED / DAY</div><h3>Obstacle — Closed Day</h3><p>Day configuration, closed position.</p><div class="model-wrap"><span class="model-note">MANUAL ROTATION · ZOOM</span><model-viewer src="./obstacle_closed_day.glb" camera-controls interaction-prompt="none" shadow-intensity="1" alt="Closed day obstacle"></model-viewer></div><div class="model-actions"><button onclick="resetNearest(this)">Reset view</button></div></div>
+<div class="model-card"><div class="pill">OPEN / NIGHT</div><h3>Obstacle — Open Night</h3><p>Night configuration, open position.</p><div class="model-wrap"><span class="model-note">MANUAL ROTATION · ZOOM</span><model-viewer src="./obstacle_open_night.glb" camera-controls interaction-prompt="none" shadow-intensity="1" alt="Open night obstacle"></model-viewer></div><div class="model-actions"><button onclick="resetNearest(this)">Reset view</button></div></div>
+<div class="model-card"><div class="pill">CLOSED / NIGHT</div><h3>Obstacle — Closed Night</h3><p>Night configuration, closed position.</p><div class="model-wrap"><span class="model-note">MANUAL ROTATION · ZOOM</span><model-viewer src="./obstacle_closed_night.glb" camera-controls interaction-prompt="none" shadow-intensity="1" alt="Closed night obstacle"></model-viewer></div><div class="model-actions"><button onclick="resetNearest(this)">Reset view</button></div></div>
+</div>
+<div class="warning"><b>Model check:</b> The supplied Closed Night GLB is only 132 bytes and contains no usable geometry. The card is retained so the final model can be dropped into the same filename later without changing the page.</div>
+</section>
+
+<section class="page" id="p8">
+<div class="page-head"><div class="eyebrow">08 / OBSTACLE SAFETY</div><h2>Obstacle Safety</h2><p>Use the approved exercise brief and safety controls. Do not improvise obstacle distances, entry methods or clearance rules.</p></div>
+<div class="grid2">
+<div class="card"><h3>Umpire Check</h3><ul><li>Know the obstacle location and intended training purpose.</li><li>Confirm the safe deployment / approach area.</li><li>Ensure participants understand the approved obstacle procedure.</li><li>Stop and seek direction if the situation falls outside the approved plan.</li></ul></div>
+<div class="card"><h3>Night / Visibility</h3><ul><li>Confirm the night visual identification arrangement.</li><li>Keep approved markers visible.</li><li>Do not rely on a model alone for field safety decisions.</li></ul></div>
+</div>
+</section>
+
+<section class="page" id="p9">
+<div class="page-head"><div class="eyebrow">09 / MOUNTED FIGHT</div><h2>Mounted Fight</h2><p>Apply vehicle status, TES and visual recognition standards during mounted operations.</p></div>
+<div class="grid2">
+<div class="card"><h3>Observe</h3><ul><li>Vehicle identity and tactical marking.</li><li>Vehicle status / life indication.</li><li>TES serviceability.</li><li>Reaction to Blue Force actions.</li><li>Approved exercise boundaries and safety controls.</li></ul></div>
+<div class="card"><h3>Record / Report</h3><ul><li>What happened?</li><li>Which vehicle / element?</li><li>What status applied?</li><li>What TES / umpiring evidence supports the assessment?</li><li>What safety issue, if any, requires immediate action?</li></ul></div>
+</div>
+</section>
+
+<section class="page" id="p10">
+<div class="page-head"><div class="eyebrow">10 / 3D VEHICLE</div><h2>Vehicle Status & 3D Reference</h2><p>Red flags simulate additional vehicle life. Use the visual status rule together with the exercise brief.</p></div>
+<div class="status-rules">
+<div class="status-rule"><strong>0 red flags mounted</strong><span>1 life</span></div>
+<div class="status-rule"><strong>1 red flag mounted</strong><span>2 lives</span></div>
+<div class="status-rule"><strong>2 red flags mounted</strong><span>3 lives</span></div>
+</div>
+<div class="grid2">
+<div class="model-card"><div class="pill">DESTROYED VEH</div><h3>Destroyed Vehicle</h3><p>Supplied reference: 1 × red flag + 1 × yellow flag.</p><div class="model-wrap"><span class="model-note">DRAG TO ROTATE · SCROLL / PINCH TO ZOOM</span><model-viewer src="./destroyed_veh_op4.glb" camera-controls interaction-prompt="none" shadow-intensity="1" alt="Destroyed vehicle"></model-viewer></div><div class="model-actions"><button onclick="resetNearest(this)">Reset view</button></div></div>
+<div class="model-card"><div class="pill">T80</div><h3>OPFOR T-80 Reference</h3><p>Vehicle platform reference supplied for the playbook.</p><div class="model-wrap"><span class="model-note">DRAG TO ROTATE · SCROLL / PINCH TO ZOOM</span><model-viewer src="./op4_t80.glb" camera-controls interaction-prompt="none" shadow-intensity="1" alt="OPFOR T80"></model-viewer></div><div class="model-actions"><button onclick="resetNearest(this)">Reset view</button></div></div>
+<div class="model-card"><div class="pill">VIPER</div><h3>OPFOR Viper Reference</h3><p>Vehicle platform reference supplied for the playbook.</p><div class="model-wrap"><span class="model-note">DRAG TO ROTATE · SCROLL / PINCH TO ZOOM</span><model-viewer src="./op4_viper.glb" camera-controls interaction-prompt="none" shadow-intensity="1" alt="OPFOR Viper"></model-viewer></div><div class="model-actions"><button onclick="resetNearest(this)">Reset view</button></div></div>
+<div class="model-card"><div class="pill">BMP</div><h3>OPFOR BMP Reference</h3><p>Vehicle platform reference supplied for the playbook.</p><div class="model-wrap"><span class="model-note">DRAG TO ROTATE · SCROLL / PINCH TO ZOOM</span><model-viewer src="./op4_bmp.glb" camera-controls interaction-prompt="none" shadow-intensity="1" alt="OPFOR BMP"></model-viewer></div><div class="model-actions"><button onclick="resetNearest(this)">Reset view</button></div></div>
+</div>
+</section>
+
+<section class="page" id="p11">
+<div class="page-head"><div class="eyebrow">11 / TES PREPARATION</div><h2>TES Preparation</h2><p>Force preparation is important to ensure mission success. TES and LDM plate serviceability should be checked before going into the field because the equipment forms part of the exercise simulation of soldier weapon and equipment serviceability.</p></div>
+<div class="card"><p>If TES / LDM plates are unserviceable for either the training unit or OPFOR in the field, the vehicle is automatically treated as <b>“down”</b> and <b>“out-of-action”</b>. Both sides therefore need to confirm TES serviceability before and during the activity.</p></div>
+<div class="grid2" style="margin-top:16px">
+<div class="model-card featured"><div class="pill">TRAINER / TRAINING UNIT</div><h3>Trainer Vehicle</h3><p>Training-unit visual reference. The model is kept separate from the OPFOR vehicle reference.</p><div class="model-wrap"><span class="model-note">DRAG TO ROTATE · SCROLL / PINCH TO ZOOM</span><model-viewer src="./LUV_E01.glb" camera-controls interaction-prompt="none" shadow-intensity="1" alt="Trainer vehicle"></model-viewer></div><div class="model-actions"><button onclick="resetNearest(this)">Reset view</button></div></div>
+<div class="model-card"><div class="pill">OPFOR / RED FORCE</div><h3>OPFOR Vehicle</h3><p>Red Force / OPFOR vehicle visual reference.</p><div class="model-wrap"><span class="model-note">DRAG TO ROTATE · SCROLL / PINCH TO ZOOM</span><model-viewer src="./op4_tnr.glb" camera-controls interaction-prompt="none" shadow-intensity="1" alt="OPFOR TES vehicle"></model-viewer></div><div class="model-actions"><button onclick="resetNearest(this)">Reset view</button></div></div>
+</div>
+<div class="grid2" style="margin-top:16px">
+<div class="card"><h3>Tactical Sign — Keep Fixed</h3><p>The tactical sign should be fixed securely so the vehicle remains clearly identifiable during the activity.</p><img class="media" src="./day_tact_sign.png" alt="Tactical sign"></div>
+<div class="card"><h3>Night Trainer Identification</h3><p>At night, the Trainer uses the approved blue or white cylume identification arrangement. The blue cylume stick is mounted at the front and rear right of the vehicle as briefed.</p><img class="media" src="./night_tact_sign.png" alt="Night tactical sign"></div>
+</div>
+</section>
+
+<section class="page" id="p12">
+<div class="page-head"><div class="eyebrow">12 / DISMOUNT FIGHT</div><h2>Dismount Fight</h2><p>Use personnel identification, TES, obstacle and close-combat references together with the approved exercise plan.</p></div>
+<div class="grid2">
+<div class="card"><h3>TES & Personnel</h3><ul><li>Confirm TES is fitted and serviceable.</li><li>Use Red Force visual identification.</li><li>Observe engagements against the approved scenario.</li><li>Record relevant outcomes and evidence.</li></ul></div>
+<div class="card"><h3>Close Combat</h3><ul><li>Follow the approved close-combat safety rules and distances.</li><li>Maintain safe conduct around participants.</li><li>Stop unsafe activity and seek the appropriate conducting authority when required.</li></ul></div>
+</div>
+</section>
+
+<section class="page" id="p13">
+<div class="page-head"><div class="eyebrow">13 / CONDUCT & POW</div><h2>Conduct / POW</h2><p>Apply the exercise rules and approved conduct requirements consistently.</p></div>
+<div class="grid2">
+<div class="card"><h3>Conduct</h3><ul><li>Remain professional and impartial in umpiring.</li><li>Follow the approved exercise plan and safety instructions.</li><li>Use only authorised simulation equipment and markings.</li><li>Report incidents clearly and promptly.</li></ul></div>
+<div class="card"><h3>POW Handling</h3><ul><li>Follow the exercise's approved POW handling procedure.</li><li>Maintain safety, dignity and accountability.</li><li>Escalate any situation outside the approved scenario to the appropriate conducting authority.</li></ul></div>
+</div>
+<div class="warning"><b>Safety first:</b> This playbook is a visual quick reference. Where the exercise brief, safety instruction or current conducting order differs, follow the approved instruction.</div>
+</section>
+
+<section class="page" id="p14">
+<div class="page-head"><div class="eyebrow">14 / FUTURE APP</div><h2>Future App</h2><p>Designed as the foundation for a standalone Red Force Umpire reference app.</p></div>
+<div class="grid3">
+<div class="card"><h3>Offline</h3><p>Bundle the HTML, models, images and app assets into an Android package so the reference can be carried without relying on GitHub Pages.</p></div>
+<div class="card"><h3>3D References</h3><p>Keep the manual rotation and zoom controls for quick visual recognition of vehicles, personnel and obstacles.</p></div>
+<div class="card"><h3>Quick Reporting</h3><p>Future versions can add structured observation, assessment, recording and reporting workflows.</p></div>
+</div>
+</section>
+
+<div class="footer-nav" id="footerNav">
+<button onclick="prev()">← Previous</button><button onclick="next()">Next →</button>
+</div>
+</main>
+<script>
+const titles=["Index","Aim","Scope","Preparation","Kit & Markings","Personnel & TES","Deployment","Obstacles","Obstacle Safety","Mounted Fight","3D Vehicle","TES Preparation","Dismount Fight","Conduct / POW","Future App"];
+const nav=document.getElementById("navIndex");
+titles.forEach((t,i)=>{const b=document.createElement("button");b.id="n"+i;b.innerHTML=`<b>${String(i).padStart(2,"0")}</b> ${t}`;b.onclick=()=>go(i);nav.appendChild(b)});
+let current=0;
+function go(i){current=Math.max(0,Math.min(titles.length-1,i));document.querySelectorAll(".page").forEach((p,n)=>p.classList.toggle("active",n===current));document.querySelectorAll(".nav-index button").forEach((b,n)=>b.classList.toggle("active",n===current));window.scrollTo({top:0,behavior:"smooth"});document.title=`${String(current).padStart(2,"0")} • ${titles[current]} — Red Force Umpire Playbook`;}
+function next(){go(current+1)} function prev(){go(current-1)}
+function resetNearest(btn){const mv=btn.closest(".model-card").querySelector("model-viewer");resetMVElement(mv)}
+function resetMV(id){resetMVElement(document.getElementById(id))}
+function resetMVElement(mv){if(!mv)return;mv.cameraOrbit="0deg 75deg auto";mv.cameraTarget="auto auto auto";mv.fieldOfView="45deg";mv.jumpCameraToGoal()}
+document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")next();if(e.key==="ArrowLeft")prev()});
+document.querySelectorAll("model-viewer").forEach(m=>m.addEventListener("error",()=>{const note=m.closest(".model-wrap")?.querySelector(".model-note");if(note)note.textContent="MODEL FILE COULD NOT BE LOADED";}));
+go(0);
+</script>
+</body>
+</html>
